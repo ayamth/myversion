@@ -9,27 +9,52 @@
     <link rel="stylesheet" href="{% static 'lemonauth/style.css' %}">
 </head>
 <body>
-    <div class="container" id="container">
+    <div class="container" id="container" style="height: 980px; width: 1200px;">
         <div class="form-container sign-up-container">
-            <form action="#">
+
+            <form method="post">
+
+                {% csrf_token %}
                 <h1>Create Account</h1>
-                <span>or use your email for registration</span>
-                <input type="text" placeholder="Name" />
-                <input type="email" placeholder="Email" />
-                <input type="password" placeholder="Password" />
-                <button>Sign Up</button>
+            
+                <div class="form-group">
+                    {{ form.username.label_tag }}
+                    {{ form.username }}
+                </div>
+            
+                <div class="form-group">
+                    {{ form.email.label_tag }}
+                    {{ form.email }}
+                </div>
+            
+                <div class="form-group">
+                    {{ form.password1.label_tag }}
+                    {{ form.password1 }}
+                    
+                </div>
+            
+                <div class="form-group">
+                    {{ form.password2.label_tag }}
+                    {{ form.password2 }}
+                </div>
+                <div class="form-group">
+                    {{ form.first_name.label_tag }}
+                    {{ form.first_name }}
+                </div>
+                <div class="form-group">
+                    {{ form.last_name.label_tag }}
+                    {{ form.last_name }}
+                </div>
+                <div class="form-group">
+                    {{ form.user_name.label_tag }}
+                    {{ form.user_name }}
+                </div>
+            
+                <button type="submit" class="btn btn-primary">Sign Up</button>
             </form>
+
         </div>
-        <div class="form-container sign-in-container">
-            <form action="#">
-                <h1>Sign in</h1>
-                <span>or use your account</span>
-                <input type="email" placeholder="Email" />
-                <input type="password" placeholder="Password" />
-                <a href="#">Forgot your password?</a>
-                <button>Sign In</button>
-            </form>
-        </div>
+
         <div class="overlay-container">
             <div class="overlay">
                 <div class="overlay-panel overlay-left">
@@ -43,7 +68,6 @@
             </div>
         </div>
     </div>
-    
 
     <script>
         const signUpButton = document.getElementById('signUp');
