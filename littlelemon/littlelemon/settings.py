@@ -76,6 +76,7 @@ AUTH_USER_MODEL = 'lemonauth.CustomUser'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+LOGIN_REDIRECT_URL = '/home/'
 
 DATABASES = {
     'default': {
