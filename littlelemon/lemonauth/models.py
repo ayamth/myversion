@@ -26,10 +26,10 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     user_name = models.CharField(max_length=30)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
+    is_loggedin = models.BooleanField(default= True)
     date_joined = models.DateTimeField(default=timezone.now)
 
     objects = CustomUserManager()
-
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['first_name', 'last_name']
 
