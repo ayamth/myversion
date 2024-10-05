@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %}The description{% endblock %}
+{% block content %}
+
+    <h1>{{ meal.name }}</h1>
+    <p>{{ meal.description }}</p>
+    <p>${{ meal.price }}</p>
+    <p>Available: {{ meal.available }}</p>
+    <a href="{% url 'meals_update' meal.id %}">Edit</a> ///
+    <a href="{% url 'meals_delete' meal.id %}">Delete</a>
+
+{% endblock %}

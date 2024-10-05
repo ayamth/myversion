@@ -1,0 +1,26 @@
+<!-- your_app/templates/meals_list.html -->
+{% extends 'base.html' %}
+
+{% block title %}The Menu{% endblock %}
+
+{% block content %}
+    {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+                <div class="alert {% if message.tags %} alert-{{ message.tags }} {% endif %}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <h1>Menu</h1>
+    <a href="{% url 'meals_create' %}">Add new meal</a>
+    <ul>
+        {% for meal in object_list %}
+            <li>
+                <a href="{% url 'meals_detail' meal.id %}">{{ meal.name }}</a> - ${{ meal.price }}
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
