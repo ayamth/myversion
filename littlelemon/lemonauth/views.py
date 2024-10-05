@@ -30,6 +30,9 @@ class SignupView (FormView):
 class HomeView(TemplateView):
     template_name = 'lemonauth/home.html'
 
+class OrdersView(TemplateView):
+    template_name = 'lemonauth/orders.html'
+
 
 class LogunView (LoginView):
     form_class= LoginForm
