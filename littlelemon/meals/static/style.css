@@ -76,7 +76,7 @@ form {
     font-size: 16px; /* حجم الخط */
     margin: 10px 0; /* مسافة من الأعلى والأسفل */
     border-radius: 5px; /* زوايا مستديرة */
-    cursor: pointer; /* تغيير شكل المؤشر عند المرور فوق الزر */
+    cursor: pointer;
 }
 
 .btn:hover {
