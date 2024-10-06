@@ -30,13 +30,12 @@ class SignupView (FormView):
 class HomeView(TemplateView):
     template_name = 'lemonauth/home.html'
 
-class OrdersView(TemplateView):
-    template_name = 'lemonauth/orders.html'
+
 
 
 class LogunView (LoginView):
     form_class= LoginForm
-    template_name = 'lemonauth/index.html'
+    template_name = 'lemonauth/signin.html'
     success_url = reverse_lazy('home') 
     def form_valid(self,form):
         user= form.get_user()
