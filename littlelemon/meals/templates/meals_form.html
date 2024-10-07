@@ -1,13 +1,14 @@
+
 {% extends 'base.html' %}
 
 {% block title %}Page for Edit{% endblock %}
 
 {% block content %}
 
-    <h1>{% if meal %}Edit Meal{% else %}Add New Meal{% endif %}</h1>
+    <h1>{% if meal %}Edit Meal{% else %}Add meal please{% endif %}</h1>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit" class="btn">Save</button>
+        <button type="submit" class="btn">Save Now</button>
     </form>
-{% endblock %}
+{% endblock %} 
