@@ -19,9 +19,9 @@
         <i class="fas fa-plus-circle text-white"></i>
     </a>
     
-    <div class="row ">
+    <div class="row d-flex justify-content-center">
         {% for meal in object_list %}
-            <div class="col-md-4 mb-4 ">
+            <div class="col-md-4 mb-4 d-flex justify-content-center">
                 <div class="card " style="width: 20rem;">
                     <img src="{% static 'img/burger-hamburger-cheeseburger.jpg' %}" alt="">
                     <div class="card-body">
@@ -33,12 +33,4 @@
             </div>
         {% endfor %}
     </div>
-    
-    {% comment %} <ul>
-        {% for meal in object_list %}
-            <li>
-                <a href="{% url 'meals_detail' meal.id %}">{{ meal.name }}</a> - ${{ meal.price }}
-            </li>
-        {% endfor %}
-    </ul> {% endcomment %}
 {% endblock %}
