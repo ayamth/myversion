@@ -3,9 +3,16 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 from .models import Meals
 from .forms import MealsForm
 from django.contrib import messages
+from django.contrib.auth.mixins import UserPassesTestMixin
 
 
-class MealsListView(ListView):
+
+class StaffRequiredMixin(UserPassesTestMixin):
+    def test_func(self):
+        return self.request.user.is_authenticated and self.request.user.is_staff 
+
+  
+class MealsListView(StaffRequiredMixin,ListView):
     model = Meals
     template_name = 'meals_list.html' 
     
@@ -15,13 +22,13 @@ class MealsListView(ListView):
     
 
 
-class MealsDetailView(DetailView):
+class MealsDetailView(StaffRequiredMixin, DetailView):
     model = Meals
     template_name = 'meals_detail.html'  
     context_object_name = 'meal'
 
 
-class MealsCreateView(CreateView):
+class MealsCreateView(StaffRequiredMixin, CreateView):
     model = Meals
     form_class = MealsForm
     template_name = 'meals_form.html' 
@@ -32,7 +39,7 @@ class MealsCreateView(CreateView):
         return super().form_valid(form)
 
 
-class MealsUpdateView(UpdateView):
+class MealsUpdateView(StaffRequiredMixin, UpdateView):
     model = Meals
     form_class = MealsForm
     template_name = 'meals_form.html'  
@@ -44,7 +51,7 @@ class MealsUpdateView(UpdateView):
         return super().form_valid(form)
 
 
-class MealsDeleteView(DeleteView):
+class MealsDeleteView(StaffRequiredMixin,DeleteView):
     model = Meals
     template_name = 'meals_confirm_delete.html' 
     success_url = reverse_lazy('meals_list')

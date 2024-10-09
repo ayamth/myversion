@@ -7,7 +7,7 @@ from django.views.generic import FormView ,TemplateView
 from django.urls import reverse_lazy
 from django.contrib.auth import get_user_model
 from django.shortcuts  import redirect
-
+from django.contrib import messages
 
 
 class SignupView (FormView):
@@ -16,13 +16,15 @@ class SignupView (FormView):
     success_url =reverse_lazy('login')
 
     def form_valid(self,form):
-        print("form valid and will be save")
+        print("Form valid and will be saved.")
         form.save()
+        messages.success(self.request, "Account created successfully!")
         return super().form_valid(form)
 
     def form_invalid(self, form):
         print("form invalid")
         print(form.errors) 
+        messages.error(self.request,"the form is invalid there's error in your submission ")
         return super().form_invalid(form)
 
 
