@@ -26,11 +26,8 @@ class SignupView (FormView):
         return super().form_invalid(form)
 
 
-
 class HomeView(TemplateView):
-    template_name = 'lemonauth/home.html'
-
-
+    template_name = 'home.html'
 
 
 class LogunView (LoginView):
