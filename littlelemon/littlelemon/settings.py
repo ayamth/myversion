@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'orders',
     'widget_tweaks',
     'lemonauth',
+    'reservations',
 
 ]
 

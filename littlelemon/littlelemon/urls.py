@@ -21,7 +21,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('meals/',include('meals.urls')),
     path('orders/',include('orders.urls')),
-    path ('', include('lemonauth.urls')) 
+    path ('', include('lemonauth.urls')),
+    path ('reservation/' , include('reservations.urls'))
 
 ]
 
