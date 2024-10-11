@@ -22,7 +22,9 @@ urlpatterns = [
     path('meals/',include('meals.urls')),
     path('orders/',include('orders.urls')),
     path ('', include('lemonauth.urls')),
-    path ('reservation/' , include('reservations.urls'))
+    path ('reservation/' , include('reservations.urls')),
+    path ('bills/' , include('bills.urls'))
+
 
 ]
 
