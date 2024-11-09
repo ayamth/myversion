@@ -59,3 +59,32 @@ class MealsDeleteView(StaffRequiredMixin,DeleteView):
     def form_valid(self, form):
         messages.success(self.request, "Meal has been successfully deleted!")
         return super().form_valid(form)
+#___________________________________________________________________________________________________________________________________________
+#api viewa
+# meals/views.py (API Views)
+from rest_framework import generics
+from .models import Meals
+from .serializers import MealsSerializer
+from rest_framework.permissions import IsAuthenticated
+from django.shortcuts import get_object_or_404
+from rest_framework.response import Response
+from rest_framework import status
+
+class MealsListApiView(generics.ListCreateAPIView):
+    queryset = Meals.objects.all()
+    serializer_class = MealsSerializer
+    permission_classes = [IsAuthenticated]  # Only authenticated users can access
+
+    def get_queryset(self):
+        """Override to return only available meals."""
+        return Meals.objects.filter(available=True)
+
+class MealsDetailApiView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Meals.objects.all()
+    serializer_class = MealsSerializer
+    permission_classes = [IsAuthenticated]  # Only authenticated users can access
+
+    def get_object(self):
+        """Override to return meal only for authenticated users."""
+        obj = get_object_or_404(Meals, pk=self.kwargs['pk'])
+        return obj

@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'lemonauth',
     'reservations',
     'bills',
+    'rest_framework',
 
 ]
 

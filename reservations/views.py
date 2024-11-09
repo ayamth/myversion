@@ -1,6 +1,3 @@
-
-# Create your views here.
-
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Reservation
 from .forms import ReservationForm
@@ -61,4 +58,30 @@ def template(request):
     
     return render(request, 'template.html', context)
 
+#______________________________________________________________________________________________________________________________________________
+#api views : 
+# reservations/views.py
+from rest_framework import generics
+from .models import Reservation
+from .serializers import ReservationSerializer
+from rest_framework.permissions import IsAuthenticated
 
+
+class ReservationListApiView(generics.ListCreateAPIView):
+    queryset = Reservation.objects.all()
+    serializer_class = ReservationSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        """Override to return only reservations for the current logged-in user."""
+        return Reservation.objects.filter(customer=self.request.user)
+
+
+class ReservationDetailApiView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Reservation.objects.all()
+    serializer_class = ReservationSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        """Override to return only reservations for the current logged-in user."""
+        return Reservation.objects.filter(customer=self.request.user)
